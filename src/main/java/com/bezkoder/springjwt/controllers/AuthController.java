@@ -116,13 +116,7 @@ public class AuthController {
     user.setEmail(signUpRequest.getEmail());
     user.setCreatedAt(LocalDateTime.now());
     
-//    if (user.getPassword().isEmpty()) {
-//        final String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-//        user.setPassword(hashedPassword);
-//    } else {
-//        // Handle the case where the password is null, e.g., throw an exception or return an error
-//        throw new IllegalArgumentException("Password cannot be null");
-//    }
+
     
  // Ensure password is not null or empty, then hash it
     if (signUpRequest.getPassword() != null && !signUpRequest.getPassword().isEmpty()) {
@@ -136,10 +130,6 @@ public class AuthController {
             .body(new MessageResponse("Error: Password cannot be null or empty!"));
     }
 
-    
-    //final String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-    //user.setPassword(hashedPassword);
-   // user.setPassword(encoder.encode(signUpRequest.getPassword()));
     user.setReg(regg);
     
     userRepository.save(user);

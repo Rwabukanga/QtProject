@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=jado
-      - POSTGRES_DB=demoo
+      - POSTGRES_DB=qtdb
     ports:
       - '5435:5432'
 
@@ -20,7 +20,7 @@ services:
     ports:
       - '3033:3032'
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/demoo
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/qtdb
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=jado
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update

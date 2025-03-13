@@ -24,15 +24,15 @@ public class Urls {
 	  private String shortCode;
 	  
 	  
-	  @NotBlank
-	  private String long_url;
+	  @Column(name = "long_url")
+	  private String longUrl;
 	  
 	  @Column(name = "created_at")
 	  private LocalDateTime createdAt = LocalDateTime.now();
 	  
 	  
-	    @Column(name = "clicks", nullable = false)
-	    private int clicks = 0;
+	  @Column(name = "clicks")
+	  private int clicks = 0;
 	  
 	  @ManyToOne
 	  private User user_id;
@@ -57,19 +57,17 @@ public class Urls {
 		return shortCode;
 	}
 
-
 	public void setShortCode(String shortCode) {
 		this.shortCode = shortCode;
 	}
-
-
-	public String getLong_url() {
-		return long_url;
+	
+	public String getLongUrl() {
+		return longUrl;
 	}
 
 
-	public void setLong_url(String long_url) {
-		this.long_url = long_url;
+	public void setLongUrl(String longUrl) {
+		this.longUrl = longUrl;
 	}
 
 
