@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.models;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+
 
 @Entity
 @Table(name = "users", 
@@ -23,7 +26,7 @@ public class User {
   @Size(max = 20)
   private String username;
 
-  @NotBlank
+  //@NotBlank
   @Size(max = 50)
   @Email
   private String email;
@@ -37,17 +40,39 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
+  
+  
+
+  @Column(name = "created_at")
+  private LocalDateTime createdAt = LocalDateTime.now();
+  
+  @ManyToOne
+  private Registrar reg;
 
   public User() {
   }
 
-  public User(String username, String email, String password) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-  }
+  
 
-  public Long getId() {
+
+
+public User(Long id, @NotBlank @Size(max = 20) String username, @Size(max = 50) @Email String email,
+		@NotBlank @Size(max = 120) String password, Set<Role> roles, LocalDateTime createdAt, Registrar reg) {
+	super();
+	this.id = id;
+	this.username = username;
+	this.email = email;
+	this.password = password;
+	this.roles = roles;
+	this.createdAt = createdAt;
+	this.reg = reg;
+}
+
+
+
+
+
+public Long getId() {
     return id;
   }
 
@@ -86,4 +111,26 @@ public class User {
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
+ 
+public LocalDateTime getCreatedAt() {
+	return createdAt;
+}
+
+
+
+public void setCreatedAt(LocalDateTime createdAt) {
+	this.createdAt = createdAt;
+}
+
+
+
+public Registrar getReg() {
+	return reg;
+}
+
+public void setReg(Registrar reg) {
+	this.reg = reg;
+}
+  
+  
 }

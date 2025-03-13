@@ -3,8 +3,9 @@ package com.bezkoder.springjwt.payload.request;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
+	
 	@NotBlank
-  private String username;
+    private String username;
 
 	@NotBlank
 	private String password;

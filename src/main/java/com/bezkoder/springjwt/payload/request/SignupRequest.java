@@ -1,10 +1,13 @@
 package com.bezkoder.springjwt.payload.request;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 public class SignupRequest {
+  
   @NotBlank
   @Size(min = 3, max = 20)
   private String username;
@@ -13,6 +16,10 @@ public class SignupRequest {
   @Size(max = 50)
   @Email
   private String email;
+  
+  
+  @Column(name = "created_at", nullable = false, updatable = false)
+  private LocalDateTime createdAt = LocalDateTime.now();
 
   private Set<String> role;
 
@@ -51,4 +58,14 @@ public class SignupRequest {
   public void setRole(Set<String> role) {
     this.role = role;
   }
+
+public LocalDateTime getCreatedAt() {
+	return createdAt;
+}
+
+public void setCreatedAt(LocalDateTime createdAt) {
+	this.createdAt = createdAt;
+}
+  
+  
 }
