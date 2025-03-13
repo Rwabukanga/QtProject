@@ -251,4 +251,7 @@ services:
     restart: always
 
 
+RUN DOCKER COMPOSEE:
+
+docker compose up -d
 
