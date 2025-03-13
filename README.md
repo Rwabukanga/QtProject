@@ -127,40 +127,70 @@ The system checks that the user ID from the JWT matches the owner of the URL bei
 I implemented Docker and Docker Composee for Backend
 
 Docker file:
+
 From openjdk:17
+
 VOLUME /tmp
+
 EXPOSE 3032
+
 COPY target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar authentication.jar
+
 ENTRYPOINT ["java", "-jar", "/authentication.jar"]
 
+
 Docker Compose:
+
 version: "3.8"
 
 services:
+
   auth-db:
+  
     image: postgres
+    
     container_name: new-users-db
+    
     restart: always
+    
     environment:
+    
       - POSTGRES_USER=admin
+      
       - POSTGRES_PASSWORD=jado
+      
       - POSTGRES_DB=qtdb
+      
     ports:
+    
       - '5435:5432'
 
   employee:
+  
     container_name: springbootspringsecurityjwtauthentication
+    
     build:
+    
       context: .
+      
       dockerfile: Dockerfile
+      
     ports:
+    
       - '3033:3032'
+      
     environment:
+    
       - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/qtdb
+      
       - SPRING_DATASOURCE_USERNAME=admin
+      
       - SPRING_DATASOURCE_PASSWORD=jado
+      
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      
     depends_on:
+    
       - auth-db
       
     restart: always
