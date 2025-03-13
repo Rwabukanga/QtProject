@@ -19,7 +19,7 @@ import com.bezkoder.springjwt.security.services.UrlService;
 
 
 @RestController
-@RequestMapping("/api/urls")
+@RequestMapping("/url")
 public class UrlController {
 
 	
@@ -31,7 +31,7 @@ public class UrlController {
 	    }
 	    
 	    
-	    @PostMapping("/create")
+	    @PostMapping("/shorten")
 	    public ResponseEntity<Map<String, String>> createUrl(@RequestBody Map<String, String> request) {
 	        String longUrl = request.get("longUrl");
 	        Long userId = Long.parseLong(request.get("userId"));
