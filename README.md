@@ -1,12 +1,33 @@
 
 
+
+
+Authentication Flow:
+User Registration:
+
+User provides a username, email, and password.
+The password is hashed using bcrypt or Argon2 before being stored in the database.
+Upon successful registration, the user receives a confirmation message.
+User Login:
+
+The user sends a username and password.
+The server compares the password with the hashed password stored in the database.
+If the login is successful, an access token (short-lived) and refresh token (long-lived) are issued.
+JWT-Based Authentication:
+
+The access token is used for authorization on protected routes.
+The refresh token is used to obtain a new access token after it expires.
+
 User Registration & Login
+
 Registration Endpoint
+
 URL: /api/auth/register
+
 Method: POST
 Request Body:
-json
-Copy
+
+
 Edit
 {
     "username":"fils",
@@ -29,9 +50,13 @@ Response
         "roles": []
     }
 }
+
 Login Endpoint
+
 URL: /api/auth/login
+
 Method: POST
+
 Request Body:
 {
     "username":"Jean",
